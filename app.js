@@ -33,7 +33,27 @@ app.set('view engine', 'hbs');
 // Stateless Session
 // ========================
 
+app.use(
+    session({
+        secret: process.env.SESSION_SECRET,
 
+        resave: false,
+
+        saveUninitialized: false,
+
+        store: MongoStore.create({
+            mongoUrl: process.env.MONGODB_SESSION_URI,
+            dbName: 'DB_23IT199',
+            collectionName: 'sessions'
+        }),
+
+        cookie: {
+            maxAge: 1000 * 60 * 60,
+            httpOnly: true,
+            secure: process.env.NODE_ENV === 'production'
+        }
+    })
+);
 
 // ========================
 // GET /
