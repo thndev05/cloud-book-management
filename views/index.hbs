@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Quản lý Sách</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 900px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+
+        form {
+            padding: 20px;
+            border: 1px solid #ddd;
+            margin-bottom: 30px;
+        }
+
+        input {
+            display: block;
+            width: 100%;
+            box-sizing: border-box;
+            padding: 10px;
+            margin: 8px 0 15px;
+        }
+
+        button {
+            padding: 10px 20px;
+            cursor: pointer;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th,
+        td {
+            border: 1px solid #ddd;
+            padding: 10px;
+        }
+
+        th {
+            background: #f5f5f5;
+        }
+
+        footer {
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px solid #ddd;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1>Quản lý Sách</h1>
+
+    <!-- CREATE BOOK -->
+
+    <h2>Thêm sách</h2>
+
+    <form action="/books" method="POST">
+
+        <label>Mã sản phẩm</label>
+
+        <input
+            type="text"
+            name="productCode"
+            placeholder="Ví dụ: 199001"
+            required
+        >
+
+        <label>Tên sách</label>
+
+        <input
+            type="text"
+            name="name"
+            placeholder="Nhập tên sách"
+            required
+        >
+
+        <label>Giá trước thuế</label>
+
+        <input
+            type="number"
+            name="price"
+            placeholder="100000"
+            min="1"
+            required
+        >
+
+        <button type="submit">
+            Thêm sách
+        </button>
+
+    </form>
+
+
+    <!-- BOOK LIST -->
+
+    <h2>Danh sách sách</h2>
+
+    <table>
+
+        <thead>
+            <tr>
+                <th>Mã</th>
+                <th>Tên sách</th>
+                <th>Giá gốc</th>
+                <th>VAT</th>
+                <th>Giá sau thuế</th>
+            </tr>
+        </thead>
+
+        <tbody>
+
+            {{#each books}}
+
+            <tr>
+                <td>{{productCode}}</td>
+
+                <td>{{name}}</td>
+
+                <td>{{price}}</td>
+
+                <td>{{vatRate}}%</td>
+
+                <td>{{finalPrice}}</td>
+            </tr>
+
+            {{/each}}
+
+        </tbody>
+
+    </table>
+
+
+    <!-- FOOTER -->
+
+    <footer>
+
+        <strong>Thông tin sinh viên</strong>
+
+        <p>
+            Họ tên: {{fullName}}
+        </p>
+
+        <p>
+            MSSV: {{mssv}}
+        </p>
+
+        <p>
+            VAT áp dụng: {{vat}}%
+        </p>
+
+    </footer>
+
+</body>
+
+</html>
