@@ -15,11 +15,11 @@ const writeConnection = mongoose.createConnection(
 );
 
 readConnection.on('connected', () => {
-    console.log('MongoDB READ connection connected');
+    console.log('MongoDB READ connection connected.');
 });
 
 writeConnection.on('connected', () => {
-    console.log('MongoDB WRITE connection connected');
+    console.log('MongoDB WRITE connection connected.');
 });
 
 readConnection.on('error', (err) => {
